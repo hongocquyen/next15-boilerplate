@@ -1,0 +1,7 @@
+@import 'src/utils/breakpoints';
+
+@mixin BodyTextRegular {
+  font-weight: 400;
+  font-size: toEm(14px);
+  line-height: 1.3;
+}
