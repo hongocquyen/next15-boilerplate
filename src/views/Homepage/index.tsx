@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 const Homepage = () => {
   return (
     <div className={styles.root}>
-      <span>Homepage</span>
+      <span>Map next</span>
     </div>
   );
 };
