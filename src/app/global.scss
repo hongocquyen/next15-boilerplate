@@ -3,7 +3,7 @@
 @import 'src/utils/breakpoints';
 
 body {
-  font-family: Dirtyline, sans-serif;
+  font-family: Syne, sans-serif;
   font-optical-sizing: auto;
   margin: 0;
   position: relative;
@@ -14,11 +14,17 @@ body {
 
 input,
 button {
-  font-family: Dirtyline, sans-serif;
+  font-family: Syne, sans-serif;
   font-optical-sizing: auto;
-  @include initConfigureFontSize;
+  @include initConfigureFontSize();
 }
 
 html {
-  @include initConfigureFontSize;
+  @include initConfigureFontSize();
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

@@ -1,4 +1,4 @@
 export const enum ENV_NAME {
   PRODUCTION = 'production',
-  DEVELOPMENT = 'development',
+  STAGING = 'staging',
 }

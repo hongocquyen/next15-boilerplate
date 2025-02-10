@@ -1,11 +1,13 @@
 import eslint from '@eslint/js';
 import prettierPlugin from 'eslint-plugin-prettier';
 import tseslint from 'typescript-eslint';
+import pluginReact from 'eslint-plugin-react';
+import globals from 'globals';
 
 export default tseslint.config(
   {
     files: ['**/*.ts', '**/*.tsx'],
-    ignores: ['node_modules/*', '**/dist/**'],
+    ignores: ['node_modules/*', '**/dist/**', '**/.next/*'],
   },
   eslint.configs.recommended,
   {
@@ -15,24 +17,30 @@ export default tseslint.config(
     },
     languageOptions: {
       parser: tseslint.parser,
-      parserOptions: {
-        project: 'tsconfig.json',
+      ...pluginReact.configs.flat.recommended.languageOptions,
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
+        ...globals.node,
       },
     },
     rules: {
       //Custom rules
-      'no-undef': 'off',
+      'no-undef': 'error',
       'no-unused-vars': 'off',
-      // Prettier
-      'prettier/prettier': [
-        'error',
-        {
-          endOfLine: 'auto',
-        },
-      ],
+      'max-depth': ['error', { max: 3 }],
+      'max-statements': ['error', { max: 20 }],
+      complexity: 'error',
+      'max-params': ['error', { max: 3 }],
+      'max-nested-callbacks': ['error', { max: 3 }],
+      'func-names': ['error', 'never'],
+      'no-console': 'error',
+      'consistent-return': 'warn',
+      'no-multiple-empty-lines': ['error', { max: 2 }],
+
       // TypeScript specific rules
       '@typescript-eslint/prefer-ts-expect-error': 'error',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/ban-ts-comment': [
